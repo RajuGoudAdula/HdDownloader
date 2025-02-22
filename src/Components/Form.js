@@ -78,23 +78,12 @@ const styles={
    color:"black"
 
   },
-  // note:{
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  //   padding:"10px",
-  //    lineHeight: "1.25rem",
-  //    letterSpacing: ".0178571429em",
-  //    fontSize: ".91rem",
-  //    color: "rgb(95, 99, 104)",
-  //    fontWeight: "550",
-
-  // }
+  
 
 }
 
 
-const socket = io("http://localhost:5000", {
+const socket = io("https://hddownloaderbackend.onrender.com/", {
   transports: ["websocket"], // ✅ Fix: Force WebSocket transport
 });
 
@@ -173,7 +162,7 @@ function Form() {
         await setIsDownloading(true);
         alert('You are downloading instagram reel/post');
         console.log(url);
-        const response = await axios.post('http://127.0.0.1:5000/download_reels', { url });
+        const response = await axios.post('https://hddownloaderbackend.onrender.com/download_reels', { url });
         downloadVideos(response.data.url_list);
 
         async function downloadVideos(videoUrls) {
@@ -203,7 +192,7 @@ function Form() {
           await setDownloaded(true);
       }else{
         setVideoDetails(null);
-        const response = await axios.post('http://127.0.0.1:5000/submitLink', { url });
+        const response = await axios.post('https://hddownloaderbackend.onrender.com/submitLink', { url });
         console.log(response);
         setVideoDetails(response);
         setShowAll(false);
@@ -225,17 +214,14 @@ function Form() {
 
     try {
 
-     
-     
-
-
-      const response = await axios.post('http://127.0.0.1:5000/videoDetails', { url, quality, container,qualityUrl }, {
+      const response = await axios.post('https://hddownloaderbackend.onrender.com/videoDetails', { url, quality, container,qualityUrl }, {
         responseType: 'blob'
       });
 
-      
+      console.log(response);
 
       const urlBlob = window.URL.createObjectURL(new Blob([response.data]));
+      console.log(urlBlob)
       const link = document.createElement('a');
       link.href = urlBlob;
       link.setAttribute('download', `${videoDetails.data.title}.mp4`);

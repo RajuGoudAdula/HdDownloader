@@ -21,7 +21,7 @@ const styles = {
     borderBottom: "solid 1px #d3cece"
   },
   navItem: {
-    marginRight: "10px",
+    marginRight: "7px",
     color: "rgb(60,64,67)",
     fontWeight: "550",
     lineHeight: "1.25rem",
@@ -44,7 +44,7 @@ function App() {
       <Navbar data-bs-theme="light" style={styles.navbar}>
         <Container>
           <Navbar.Brand as={Link} to="/">
-           <img src={Logo} style={styles.Logo}></img>
+           <img src={Logo} style={styles.Logo} alt="Company Logo"></img>
           </Navbar.Brand>
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/" style={styles.navItem}>Home</Nav.Link>
